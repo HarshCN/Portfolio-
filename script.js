@@ -1,9 +1,13 @@
-// Get the button and navigation bar elements
-const toggleButton = document.getElementById('toggleButton');
-const navbar = document.getElementById('navbar');
-
-// Add a click event listener to toggle the navigation bar visibility
-toggleButton.addEventListener('click', function() {
-  // Toggle the class to show/hide the navigation bar
-  navbar.classList.toggle('show');
-});
+function toggleFullScreen(element) {
+    if (!document.fullscreenElement) {
+      // If not in fullscreen, request fullscreen
+      element.classList.add('fullscreen');
+      element.requestFullscreen().catch(err => {
+        console.error(`Error attempting to enable fullscreen: ${err.message}`);
+      });
+    } else {
+      // If in fullscreen, exit fullscreen
+      document.exitFullscreen();
+      element.classList.remove('fullscreen');
+    }
+  }
